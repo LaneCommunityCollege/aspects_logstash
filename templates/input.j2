@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+input {
+  {% for value in aspects_logstash_rules.input %}
+  {{ aspects_logstash_rules.input[value] }}
+  {% endfor %}
+}

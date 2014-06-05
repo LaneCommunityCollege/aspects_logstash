@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+filter {
+  {% for value in aspects_logstash_rules.filter %}
+  {{ aspects_logstash_rules.filter[value] }}
+  {% endfor %}
+}

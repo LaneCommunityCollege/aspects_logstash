@@ -1,0 +1,17 @@
+input {
+{% for input in aspects_logstash_rules.input %}
+{{ aspects_logstash_rules.input[input] }}
+{% endfor %}
+}
+
+output {
+{% for output in aspects_logstash_rules.output %}
+{{ aspects_logstash_rules.output[output] }}
+{% endfor %}
+}
+
+filter {
+{% for filter in aspects_logstash_rules.filter %}
+{{ aspects_logstash_rules.filter[filter] }}
+{% endfor %}
+}

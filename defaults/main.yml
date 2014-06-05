@@ -1,0 +1,136 @@
+---
+# defaults file for aspects_logstash
+
+aspects_logstash_user:
+  username: root
+  group: root
+
+aspects_logstash_install: false
+aspects_logstash_use_daemon: true
+aspects_logstash_use_web: false
+
+aspects_logstash_bin_filename: "logstash-1.4.1.tar.gz"
+aspects_logstash_bin_dirname: "logstash-1.4.1"
+aspects_logstash_filesystem:
+  binary: "/opt/logstash"
+  logs: "/var/log/logstash"
+  conf: "/etc/logstash/conf.d"
+  patterns: "/etc/logstash/patterns"
+  defaults:
+    RedHat: "/etc/sysconfig/"
+    Debian: "/etc/default/"
+
+aspects_logstash_options:
+  daemon:
+    enabled: "yes"
+    JAVACMD: false
+    NAME: "logstash"
+    DESC: "Logstash Daemon"
+    PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
+    LS_USER: "root"
+    LS_GROUP: "root"
+    LS_HOME: "/opt/logstash"
+    LS_HEAP_SIZE: "256m"
+    LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
+    LS_LOG_FILE: "/var/log/logstash/logstash.log"
+    LS_CONF_DIR: "/etc/logstash/conf.d"
+    LS_OPEN_FILES: "16384"
+    LS_NICE: "19"
+    LS_OPTS: ""
+    LS_PIDFILE: "/var/run/logstash.pid"
+#  web:
+#    enabled: "no"
+#    JAVACMD: false
+#    NAME: "logstash-web"
+#    DESC: "Logstash Daemon"
+#    PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
+#    LS_USER: "root"
+#    LS_HOME: "/opt/logstash"
+#    LS_HEAP_SIZE: "256m"
+#    LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
+#    LS_WORKER_THREADS: 1
+#    LS_LOG_FILE: "/var/log/logstash/logstash-web.log"
+#    LS_USE_GC_LOGGING: ""
+#    LS_CONF_DIR: "/etc/logstash/conf.d"
+#    LS_OPEN_FILES: "2048"
+#    LS_NICE: "19"
+#    LS_PIDFILE: "/var/run/logstash-web.pid"
+
+## Commented out configuration items are left as examples.
+aspects_logstash_rules:
+  patterns:
+    postfix: |
+      COMP ([\w._\/%-]+)
+      COMPID postfix\/%{COMP:component}(?:\[%{POSINT:pid}\])?
+      QUEUEID ([0-9A-F]{,11})
+      POSTFIX %{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:hostname} %{COMPID}: %{QUEUEID:queueid}
+  input: {}
+#    stdin: |
+#      stdin{ type => "stdin" }
+#    syslog: |
+#      file {
+#              exclude => ["*.gz","shipper.log"]
+#              path => ["/var/log/syslog"]
+#              type => "syslog"
+#          }
+#    postfix: |
+#      file {
+#              path => ["/var/log/mail.*"]
+#              type => "postfix"
+#          }
+#    apache: |
+#      file {
+#              exclude => ["/var/log/apache2/*.gz"]
+#              path => ["/var/log/apache2/*.log"]
+#              type => "apache"
+#          }
+#    auth: |
+#      file {
+#              path => ["/var/log/auth.log"]
+#              type => "auth"
+#          }
+  output: {}
+#    stdout: |
+#      if [type] == "stdin"
+#        {
+#          stdout { codec => rubydebug }
+#        }
+#    fileout: |
+#      file {
+#         codec => "rubydebug"
+#         path => "/tmp/logstashtest"
+#         }
+#    redis: |
+#      redis {
+#              data_type => "list"
+#              host => ["node"]
+#              key => "logstash"
+#              }
+  filter: {}
+#    postfix: |
+#      if [type] == "postfix" {
+#          grok {
+#              add_tag => ["postfix", "grokked"]
+#              match => ["message", "%{POSTFIX}"]
+#              patterns_dir => ["/etc/logstash/patterns"]
+#                  }
+#          }
+#    apache: |
+#      if [type] == "apache" {
+#          grok {
+#              add_tag => ["apache", "grokked"]
+#              match => ["message", "%{COMBINEDAPACHELOG}"]
+#              patterns_dir => ["/etc/logstash/patterns"]
+#              }
+#          date {
+#              match => ["timestamp", "dd/MMM/YYY:HH:mm:ss Z"]
+#              }
+#          }
+#    auth: |
+#      if [type] == "auth" {
+#          grok {
+#              add_tag => ["auth", "grokked"]
+#              match => ["message", "%{SYSLOGBASE}"]
+#              patterns_dir => ["/etc/logstash/patterns"]
+#                  }
+#          }

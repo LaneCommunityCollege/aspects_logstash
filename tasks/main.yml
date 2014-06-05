@@ -1,0 +1,60 @@
+---
+# tasks file for aspects_logstash
+- include: install.yml
+  when: aspects_logstash_install
+
+## Commented out logstash user and group creation because I can't get it to work correctly.
+## Pull requests to fix this would be eagerly accepted.
+#- name: create logstash system group
+#  user:
+#    state="present"
+#    name="{{ aspects_logstash_user.group }}"
+#    system="yes"
+#  tags:
+#      - aspects_logstash
+
+#- name: create logstash system user
+#  when: aspects_logstash_user.username != 'root' and aspects_logstash_user.group != 'root'
+#  user:
+#    state="present"
+#    name="{{ aspects_logstash_user.username }}"
+#    group="{{ aspects_logstash_user.group }}"
+#    system="yes"
+#    shell="/sbin/nologin"
+#    comment="Logstash system user"
+#  tags:
+#      - aspects_logstash
+
+- name: Set up logstash filesystem
+  file:
+    state="directory"
+    path="{{ item }}"
+    owner="{{ aspects_logstash_user.username }}"
+    group="{{ aspects_logstash_user.group }}"
+    mode="0755"
+    recurse="yes"
+  with_items:
+    - "{{ aspects_logstash_filesystem.logs }}"
+    - "{{ aspects_logstash_filesystem.conf }}"
+    - "/opt/{{ aspects_logstash_bin_dirname }}"
+  tags:
+    - aspects_logstash
+
+- name: symlink /var/lib/logstash to /opt/{{ aspects_logstash_bin_dirname }}
+  file:
+    state="link"
+    src="/opt/{{ aspects_logstash_bin_dirname }}"
+    dest="/var/lib/logstash"
+    owner="{{ aspects_logstash_user.username }}"
+    group="{{ aspects_logstash_user.group }}"
+    mode="0755"
+  tags:
+    - aspects_logstash
+
+- include: logstash-daemon.yml
+  when: aspects_logstash_use_daemon
+
+#- include: logstash-web.yml
+#  when: aspects_logstash_use_web
+
+- include: configtemplates.yml

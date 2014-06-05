@@ -1,0 +1,63 @@
+###############################
+# {{ ansible_managed }}
+# Default settings for logstash
+###############################
+
+# Override Java location
+#JAVACMD=/usr/bin/java
+{% if aspects_logstash_options.web.JAVACMD is defined and aspects_logstash_options.web.JAVACMD != false %}
+JAVACMD={{ aspects_logstash_options.web.JAVACMD }}
+{% endif %}
+# Set a home directory
+#LS_HOME=/var/lib/logstash
+{% if aspects_logstash_options.web.LS_HOME is defined and aspects_logstash_options.web.LS_HOME != false %}
+LS_HOME={{ aspects_logstash_options.web.LS_HOME }}
+{% endif %}
+# Arguments to pass to java
+#LS_HEAP_SIZE="256m"
+{% if aspects_logstash_options.web.LS_HEAP_SIZE is defined and aspects_logstash_options.web.LS_HEAP_SIZE != false %}
+LS_HEAP_SIZE="{{ aspects_logstash_options.web.LS_HEAP_SIZE }}"
+{% endif %}
+#LS_JAVA_OPTS="-Djava.io.tmpdir=$HOME"
+{% if aspects_logstash_options.web.LS_JAVA_OPTS is defined and aspects_logstash_options.web.LS_JAVA_OPTS != false %}
+LS_JAVA_OPTS="{{ aspects_logstash_options.web.LS_JAVA_OPTS }}"
+{% endif %}
+# Logstash filter worker threads
+#LS_WORKER_THREADS=1
+{% if aspects_logstash_options.web.LS_WORKER_THREADS is defined and aspects_logstash_options.web.LS_WORKER_THREADS != false %}
+LS_WORKER_THREADS={{ aspects_logstash_options.web.LS_WORKER_THREADS }}
+{% endif %}
+# pidfiles aren't used for upstart; this is for sysv users.
+#LS_PIDFILE=/var/run/logstash.pid
+{% if aspects_logstash_options.web.LS_PIDFILE is defined and aspects_logstash_options.web.LS_PIDFILE != false %}
+LS_PIDFILE={{ aspects_logstash_options.web.LS_PIDFILE }}
+{% endif %}
+# user id to be invoked as; for upstart: edit /etc/init/logstash.conf
+#LS_USER=logstash
+{% if aspects_logstash_options.web.LS_USER is defined and aspects_logstash_options.web.LS_USER != false %}
+LS_USER={{ aspects_logstash_options.web.LS_USER }}
+{% endif %}
+# logstash logging
+#LS_LOG_FILE=/var/log/logstash/logstash-web.log
+{% if aspects_logstash_options.web.LS_LOG_FILE is defined and aspects_logstash_options.web.LS_LOG_FILE != false %}
+LS_LOG_FILE={{ aspects_logstash_options.web.LS_LOG_FILE }}
+{% endif %}
+#LS_USE_GC_LOGGING="true"
+{% if aspects_logstash_options.web.LS_USE_GC_LOGGING is defined and aspects_logstash_options.web.LS_USE_GC_LOGGING != false %}
+LS_USE_GC_LOGGING={{ aspects_logstash_options.web.LS_USE_GC_LOGGING }}
+{% endif %}
+# logstash configuration directory
+#LS_CONF_DIR=/etc/logstash/conf.d
+{% if aspects_logstash_options.web.LS_CONF_DIR is defined and aspects_logstash_options.web.LS_CONF_DIR != false %}
+LS_CONF_DIR={{ aspects_logstash_options.web.LS_CONF_DIR }}
+{% endif %}
+# Open file limit; cannot be overridden in upstart
+#LS_OPEN_FILES=2048
+{% if aspects_logstash_options.web.LS_OPEN_FILES is defined and aspects_logstash_options.web.LS_OPEN_FILES != false %}
+LS_OPEN_FILES={{ aspects_logstash_options.web.LS_OPEN_FILES }}
+{% endif %}
+# Nice level
+#LS_NICE=0
+{% if aspects_logstash_options.web.LS_NICE is defined and aspects_logstash_options.web.LS_NICE != false %}
+LS_NICE={{ aspects_logstash_options.web.LS_NICE }}
+{% endif %}

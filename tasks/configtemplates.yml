@@ -1,0 +1,46 @@
+---
+# set input, output and filter configuration in logstash/conf.d
+
+- name: set patterns
+  template:
+    src="patterns.j2"
+    dest="{{ aspects_logstash_filesystem.patterns }}/patterns"
+  notify:
+   - restart logstash
+#   - restart logstash-web
+  tags:
+    - aspects_logstash
+    - aspects_logstash_configtemplates
+
+- name: set inputs
+  template:
+    src="input.j2"
+    dest="{{ aspects_logstash_filesystem.conf }}/input.conf"
+  notify:
+   - restart logstash
+#   - restart logstash-web
+  tags:
+    - aspects_logstash
+    - aspects_logstash_configtemplates
+
+- name: set outputs
+  template:
+    src="output.j2"
+    dest="{{ aspects_logstash_filesystem.conf }}/output.conf"
+  notify:
+   - restart logstash
+#   - restart logstash-web
+  tags:
+    - aspects_logstash
+    - aspects_logstash_configtemplates
+
+- name: set filters
+  template:
+    src="filter.j2"
+    dest="{{ aspects_logstash_filesystem.conf }}/filter.conf"
+  notify:
+   - restart logstash
+#   - restart logstash-web
+  tags:
+    - aspects_logstash
+    - aspects_logstash_configtemplates

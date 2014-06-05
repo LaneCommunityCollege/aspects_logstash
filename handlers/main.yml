@@ -1,0 +1,7 @@
+---
+# handlers file for aspects_logstash
+- include: logstash-daemon.yml
+  when: aspects_logstash_use_daemon
+
+#- include: logstash-web.yml
+#  when: aspects_logstash_use_web

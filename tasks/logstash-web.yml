@@ -1,0 +1,68 @@
+---
+## web files
+- name: set RedHat family web defaults template
+  when: ansible_os_family == "RedHat"
+  template:
+    src="logstash-web.defaults.j2"
+    dest="{{ aspects_logstash_filesystem.defaults.RedHat }}/{{ aspects_logstash_options.web.NAME }}"
+    owner="root"
+    group="root"
+    mode="0644"
+  tags:
+    - aspects_logstash
+
+- name: set RedHat family web init script
+  when: ansible_os_family == "RedHat"
+  copy:
+    src="logstash-web.sysv.redhat"
+    dest="/etc/init.d/{{ aspects_logstash_options.web.NAME }}"
+    owner="root"
+    group="root"
+    mode="0755"
+  tags:
+    - aspects_logstash
+
+- name: set Debian family web defaults template
+  when: ansible_os_family == "Debian"
+  template:
+    src="logstash-web.defaults.j2"
+    dest="{{ aspects_logstash_filesystem.defaults.Debian }}/{{ aspects_logstash_options.web.NAME }}"
+    owner="root"
+    group="root"
+    mode="0644"
+  tags:
+    - aspects_logstash
+
+- name: set Ubuntu upstart web init script
+  when: ansible_distribution == "Ubuntu"
+  copy:
+    src="logstash-web.upstart.ubuntu"
+    dest="/etc/init/{{ aspects_logstash_options.web.NAME }}.conf"
+    owner="root"
+    group="root"
+    mode="0755"
+  tags:
+    - aspects_logstash
+
+- name: symlink Ubuntu web upstart job
+  when: ansible_distribution == "Ubuntu"
+  file:
+    state="link"
+    src="/lib/init/upstart-job"
+    dest="/etc/init.d/{{ aspects_logstash_options.web.NAME }}"
+    owner="root"
+    group="root"
+    mode="0777"
+  tags:
+    - aspects_logstash
+
+- name: set Debian family daemon init script
+  when: ansible_distribution != "Ubuntu" and ansible_os_family == "Debian"
+  copy:
+    src="logstash.sysv.debian"
+    dest="/etc/init.d/{{ aspects_logstash_options.web.NAME }}"
+    owner="root"
+    group="root"
+    mode="0755"
+  tags:
+    - aspects_logstash
