@@ -36,6 +36,7 @@
   with_items:
     - "{{ aspects_logstash_filesystem.logs }}"
     - "{{ aspects_logstash_filesystem.conf }}"
+    - "{{ aspects_logstash_filesystem.patterns }}"
     - "/opt/{{ aspects_logstash_bin_dirname }}"
   tags:
     - aspects_logstash

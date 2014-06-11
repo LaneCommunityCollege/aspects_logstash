@@ -73,7 +73,7 @@ aspects_logstash_rules:
 #      stdin{ type => "stdin" }
 #    syslog: |
 #      file {
-#              exclude => ["*.gz","shipper.log"]
+#              exclude => ["*.gz"]
 #              path => ["/var/log/syslog"]
 #              type => "syslog"
 #          }
