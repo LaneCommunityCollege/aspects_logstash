@@ -35,6 +35,15 @@ Include the daemon tasks and handlers.
 Values: true|false
 Default: true
 
+###aspects_logstash_daemon_type
+Does this daemon send logs to data storage, or just to a queue/processor?
+Values: 
+"indexer" for data storage
+"shipper" for sending logs to a queue/processor.
+Default is "indexer"
+
+For example, if the daemon outputs to Elasticsearch, use "indexer". If the daemon outputs to Redis, use "shipper".
+
 ###aspects_logstash_bin_filename
 The filename of the logstash download. Used in the unarchive task.
 Values: Any file name that points to the tar file downloaded from logstash.

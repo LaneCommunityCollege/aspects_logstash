@@ -11,6 +11,10 @@ aspects_logstash_use_web: false
 
 aspects_logstash_bin_filename: "logstash-1.4.1.tar.gz"
 aspects_logstash_bin_dirname: "logstash-1.4.1"
+# can be "indexer" for daemon that stores logs in data storage like Elasticsearch, or
+# "shipper" for daemon that just sends logs to an indexer or to a queue like Redis.
+# default is "indexer"
+aspects_logstash_daemon_type: "indexer"
 aspects_logstash_filesystem:
   binary: "/opt/logstash"
   logs: "/var/log/logstash"

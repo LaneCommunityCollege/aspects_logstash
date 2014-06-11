@@ -35,6 +35,7 @@
     - aspects_logstash_configtemplates
 
 - name: set filters
+  when: aspects_logstash_daemon_type == "indexer"
   template:
     src="filter.j2"
     dest="{{ aspects_logstash_filesystem.conf }}/filter.conf"
