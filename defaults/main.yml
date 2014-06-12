@@ -1,6 +1,7 @@
 ---
 # defaults file for aspects_logstash
 
+aspects_logstash_use_oracle_java: false
 aspects_logstash_user:
   username: root
   group: root

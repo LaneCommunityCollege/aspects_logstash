@@ -1,5 +1,5 @@
 ---
 # vars file for aspects_logstash
 aspects_common_packages:
-  javajre:
+  openjdk:
     state: "latest"

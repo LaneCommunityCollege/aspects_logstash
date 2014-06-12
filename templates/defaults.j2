@@ -41,7 +41,9 @@ LS_PIDFILE={{ aspects_logstash_options.daemon.LS_PIDFILE }}
 {% if aspects_logstash_options.daemon.LS_USER is defined and aspects_logstash_options.daemon.LS_USER != false %}
 LS_USER={{ aspects_logstash_options.daemon.LS_USER }}
 {% endif %}
-
+{% if aspects_logstash_options.daemon.LS_GROUP is defined and aspects_logstash_options.daemon.LS_GROUP != false %}
+LS_GROUP={{ aspects_logstash_options.daemon.LS_GROUP }}
+{% endif %}
 # logstash logging
 #LS_LOG_FILE=/var/log/logstash/logstash.log
 {% if aspects_logstash_options.daemon.LS_LOG_FILE is defined and aspects_logstash_options.daemon.LS_LOG_FILE != false %}
