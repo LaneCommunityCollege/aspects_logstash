@@ -22,8 +22,8 @@ aspects_logstash_filesystem:
   conf: "/etc/logstash/conf.d"
   patterns: "/etc/logstash/patterns"
   defaults:
-    RedHat: "/etc/sysconfig/"
-    Debian: "/etc/default/"
+    RedHat: "/etc/sysconfig"
+    Debian: "/etc/default"
 
 aspects_logstash_options:
   daemon:

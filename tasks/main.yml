@@ -31,8 +31,8 @@
     path="{{ item }}"
     owner="{{ aspects_logstash_user.username }}"
     group="{{ aspects_logstash_user.group }}"
-    mode="0755"
-    recurse="yes"
+    mode="755"
+    recurse="no"
   with_items:
     - "{{ aspects_logstash_filesystem.logs }}"
     - "{{ aspects_logstash_filesystem.conf }}"
