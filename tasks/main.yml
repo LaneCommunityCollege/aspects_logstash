@@ -26,6 +26,7 @@
 #      - aspects_logstash
 
 - name: Set up logstash filesystem
+  when: aspects_logstash_enabled != false
   file:
     state="directory"
     path="{{ item }}"
@@ -42,6 +43,7 @@
     - aspects_logstash
 
 - name: symlink /var/lib/logstash to /opt/{{ aspects_logstash_bin_dirname }}
+  when: aspects_logstash_enabled != false
   file:
     state="link"
     src="/opt/{{ aspects_logstash_bin_dirname }}"
@@ -59,3 +61,4 @@
 #  when: aspects_logstash_use_web
 
 - include: configtemplates.yml
+  when: aspects_logstash_enabled != false

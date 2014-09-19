@@ -7,6 +7,7 @@ aspects_logstash_user:
   group: root
 
 aspects_logstash_install: false
+aspects_logstash_enabled: true
 aspects_logstash_use_daemon: true
 aspects_logstash_use_web: false
 
