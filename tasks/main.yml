@@ -56,9 +56,13 @@
 
 - include: logstash-daemon.yml
   when: aspects_logstash_use_daemon
+  tags:
+    - aspects_logstash
 
 #- include: logstash-web.yml
 #  when: aspects_logstash_use_web
 
 - include: configtemplates.yml
   when: aspects_logstash_enabled != false
+  tags:
+    - aspects_logstash
