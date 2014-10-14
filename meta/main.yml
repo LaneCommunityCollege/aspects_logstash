@@ -113,7 +113,6 @@ galaxy_info:
   - system
   #- web
 dependencies:
-  - aspects_common_packages
   - { role: aspects_oracle_java, when: aspects_logstash_use_oracle_java }
   # List your role dependencies here, one per line. Only
   # dependencies available via galaxy should be listed here.

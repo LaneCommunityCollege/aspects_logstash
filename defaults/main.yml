@@ -1,5 +1,12 @@
 ---
 # defaults file for aspects_logstash
+aspects_logstash_packages:
+  openjdk:
+    state: "latest"
+    Debian: default-jre-headless
+    RedHat: java-1.7.0-openjdk
+# SLES does not have openjdk, which means it's different from the others. So leaving commented out for now.
+#    Suse: java-1_7_0-ibm
 
 aspects_logstash_use_oracle_java: false
 aspects_logstash_user:

@@ -2,6 +2,12 @@
 # tasks file for aspects_logstash
 - include: install.yml
   when: aspects_logstash_install
+  tags:
+  - aspects_logstash
+  - aspects_logstash_install
+- include: installPackages.yml
+  tags:
+  - aspects_logstash
 
 ## Commented out logstash user and group creation because I can't get it to work correctly.
 ## Pull requests to fix this would be eagerly accepted.

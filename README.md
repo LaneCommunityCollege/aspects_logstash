@@ -114,7 +114,7 @@ Has a default pattern for postfix logs.
 Dictionary of logstash configuration. See http://logstash.net/docs/1.4.1 for details. The defaults/main.yml file has some commented out examples.
 
 ##Dependencies
-* aspects_common_packages
+None
 
 ##License
 
