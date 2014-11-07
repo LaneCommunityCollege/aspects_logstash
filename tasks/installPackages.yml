@@ -6,7 +6,7 @@
     - aspects_logstash
     - aspects_logstash_package_install
 
-- name: Debian - Install apache2 packages with apt
+- name: Debian - Install logstash packages with apt
   when: ansible_os_family == "Debian" and item.value.state != 'default' and item.value.state != 'purged' and item.value.Debian is defined
   apt: pkg={{ item.value.Debian }} state={{ item.value.state }} update_cache="yes" cache_valid_time="86400"
   with_dict: aspects_logstash_packages
@@ -14,7 +14,7 @@
     - aspects_logstash
     - aspects_logstash_package_install
 
-- name: RedHat - Install apache2 packages with yum
+- name: RedHat - Install logstash packages with yum
   when: ansible_os_family == "RedHat" and item.value.state != 'default' and item.value.state != 'purged' and item.value.RedHat is defined
   yum: name={{ item.value.RedHat }} state={{ item.value.state }}
   with_dict: aspects_logstash_packages
@@ -22,7 +22,7 @@
     - aspects_logstash
     - aspects_logstash_package_install
 
-- name: Suse - Install apache2 packages with Zypper
+- name: Suse - Install logstash packages with Zypper
   when: ansible_os_family == "Suse" and item.value.state != 'default' and item.value.state != 'purged' and item.value.Suse is defined
   zypper: name={{ item.value.Suse }} state={{ item.value.state }}
   with_dict: aspects_logstash_packages
