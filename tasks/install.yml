@@ -3,9 +3,9 @@
 
 - name: Untar logstash tarball
   unarchive:
-    copy=yes
-    src="downloads/{{ aspects_logstash_bin_filename }}"
-    dest="/opt"
+    copy: yes
+    src: "downloads/{{ aspects_logstash_bin_filename }}"
+    dest: "/opt"
   tags:
     - aspects_logstash
     - aspects_logstash_install
