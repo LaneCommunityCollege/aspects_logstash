@@ -9,28 +9,6 @@
   tags:
   - aspects_logstash
 
-## Commented out logstash user and group creation because I can't get it to work correctly.
-## Pull requests to fix this would be eagerly accepted.
-#- name: create logstash system group
-#  user:
-#    state="present"
-#    name="{{ aspects_logstash_user.group }}"
-#    system="yes"
-#  tags:
-#      - aspects_logstash
-
-#- name: create logstash system user
-#  when: aspects_logstash_user.username != 'root' and aspects_logstash_user.group != 'root'
-#  user:
-#    state="present"
-#    name="{{ aspects_logstash_user.username }}"
-#    group="{{ aspects_logstash_user.group }}"
-#    system="yes"
-#    shell="/sbin/nologin"
-#    comment="Logstash system user"
-#  tags:
-#      - aspects_logstash
-
 - name: Set up logstash filesystem
   when: aspects_logstash_enabled != false
   file:
@@ -64,9 +42,6 @@
   when: aspects_logstash_use_daemon
   tags:
     - aspects_logstash
-
-#- include: logstash-web.yml
-#  when: aspects_logstash_use_web
 
 - include: configtemplates.yml
   when: aspects_logstash_enabled != false

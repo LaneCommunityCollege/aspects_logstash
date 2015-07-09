@@ -16,10 +16,9 @@ aspects_logstash_user:
 aspects_logstash_install: false
 aspects_logstash_enabled: true
 aspects_logstash_use_daemon: true
-aspects_logstash_use_web: false
 
-aspects_logstash_bin_filename: "logstash-1.4.2.tar.gz"
-aspects_logstash_bin_dirname: "logstash-1.4.2"
+aspects_logstash_bin_filename: "logstash-1.5.2.tar.gz"
+aspects_logstash_bin_dirname: "logstash-1.5.2"
 # can be "indexer" for daemon that stores logs in data storage like Elasticsearch, or
 # "shipper" for daemon that just sends logs to an indexer or to a queue like Redis.
 # default is "indexer"
@@ -51,23 +50,6 @@ aspects_logstash_options:
     LS_NICE: "19"
     LS_OPTS: ""
     LS_PIDFILE: "/var/run/logstash.pid"
-#  web:
-#    enabled: "no"
-#    JAVACMD: false
-#    NAME: "logstash-web"
-#    DESC: "Logstash Daemon"
-#    PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
-#    LS_USER: "root"
-#    LS_HOME: "/opt/logstash"
-#    LS_HEAP_SIZE: "256m"
-#    LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
-#    LS_WORKER_THREADS: 1
-#    LS_LOG_FILE: "/var/log/logstash/logstash-web.log"
-#    LS_USE_GC_LOGGING: ""
-#    LS_CONF_DIR: "/etc/logstash/conf.d"
-#    LS_OPEN_FILES: "2048"
-#    LS_NICE: "19"
-#    LS_PIDFILE: "/var/run/logstash-web.pid"
 
 ## Commented out configuration items are left as examples.
 aspects_logstash_rules:

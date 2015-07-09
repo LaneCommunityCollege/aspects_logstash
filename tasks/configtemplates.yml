@@ -7,7 +7,6 @@
     dest="{{ aspects_logstash_filesystem.patterns }}/patterns"
   notify:
    - restart logstash
-#   - restart logstash-web
   tags:
     - aspects_logstash
     - aspects_logstash_configtemplates
@@ -18,7 +17,6 @@
     dest="{{ aspects_logstash_filesystem.conf }}/input.conf"
   notify:
    - restart logstash
-#   - restart logstash-web
   tags:
     - aspects_logstash
     - aspects_logstash_configtemplates
@@ -29,7 +27,6 @@
     dest="{{ aspects_logstash_filesystem.conf }}/output.conf"
   notify:
    - restart logstash
-#   - restart logstash-web
   tags:
     - aspects_logstash
     - aspects_logstash_configtemplates
@@ -41,7 +38,6 @@
     dest="{{ aspects_logstash_filesystem.conf }}/filter.conf"
   notify:
    - restart logstash
-#   - restart logstash-web
   tags:
     - aspects_logstash
     - aspects_logstash_configtemplates

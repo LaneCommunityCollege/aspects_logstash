@@ -1,12 +1,12 @@
 #aspects_logstash
 
-Install and configure Logstash log manager. Note that the logstash-web agent is unsupported.
+Install and configure Logstash log manager.
 
 ##Requirements
 
 Set ```hash_behaviour=merge``` in your ansible.cfg file.
 
-You need to download the logstash tar to files/downloads https://download.elasticsearch.org/logstash/logstash/logstash-1.4.1.tar.gz
+You need to download the logstash tar to files/downloads. Find it here: https://www.elastic.co/downloads/logstash
 
 ##Role Variables
 
@@ -17,8 +17,6 @@ Default: true
 
 You should override this to ```false``` after your initial install so that you don't keep uploading and uncompressing the logstash tar file.
 
-###aspects_logstash_user
-Dictionary with subvalues:
 ####username: root
 Which user to run Logstash with.
 Values: any system user
@@ -47,18 +45,18 @@ For example, if the daemon outputs to Elasticsearch, use "indexer". If the daemo
 ###aspects_logstash_bin_filename
 The filename of the logstash download. Used in the unarchive task.
 Values: Any file name that points to the tar file downloaded from logstash.
-Default: "logstash-1.4.1.tar.gz"
+Default: "logstash-1.5.2.tar.gz"
 
 ###aspects_logstash_bin_dirname
 The directory name that the unarchive task creates.
 Values: Whatever the logstash unarchive task creates.
-Default: logstash-1.4.1
+Default: logstash-1.5.2
 
 ###aspects_logstash_filesystem:
 Dictionary that helps create and set permissions for the directories and files Logstash uses.
 
 ####binary
-The symlink to the unarcived logstash directory
+The symlink to the unarchived logstash directory
 Values: where you want logstash to live
 Default: "/opt/logstash"
 You should not change this, it is embedded in several files. This should likely be removed eventually, or else the init scripts need to be templated. 
@@ -107,11 +105,11 @@ Current default settings:
 ###apspects_logstash_rules
 Dictionary containing logstash configuration.
 ####patterns
-Dictionary of grok patterns. See: http://logstash.net/docs/1.4.1/filters/grok
+Dictionary of grok patterns. Find docs on the subject on https://elastic.co
 Has a default pattern for postfix logs.
 
 ####inputs, outputs, filters
-Dictionary of logstash configuration. See http://logstash.net/docs/1.4.1 for details. The defaults/main.yml file has some commented out examples.
+Dictionary of logstash configuration. See https://elastic.co for details. The defaults/main.yml file has some commented out examples.
 
 ##Dependencies
 None
