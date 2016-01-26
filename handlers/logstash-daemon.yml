@@ -1,22 +1,30 @@
 - name: restart logstash
   service:
-    name="{{ aspects_logstash_options.daemon.NAME }}"
-    state="restarted"
-    enabled="{{ aspects_logstash_options.daemon.enabled }}"
+    name: "{{ aspects_logstash_options.daemon.NAME }}"
+    state: "restarted"
+    enabled: "{{ aspects_logstash_options.daemon.enabled }}"
+  tags:
+  - aspects_logstash
 
 - name: reload logstash
   service:
-    name="{{ aspects_logstash_options.daemon.NAME }}"
-    state="reloaded"
-    enabled="{{ aspects_logstash_options.daemon.enabled }}"
+    name: "{{ aspects_logstash_options.daemon.NAME }}"
+    state: "reloaded"
+    enabled: "{{ aspects_logstash_options.daemon.enabled }}"
+  tags:
+  - aspects_logstash
 
 - name: start logstash
   service:
-    name="{{ aspects_logstash_options.daemon.NAME }}"
-    state="started"
-    enabled="{{ aspects_logstash_options.daemon.enabled }}"
+    name: "{{ aspects_logstash_options.daemon.NAME }}"
+    state: "started"
+    enabled: "{{ aspects_logstash_options.daemon.enabled }}"
+  tags:
+  - aspects_logstash
 
 - name: stop logstash
   service:
-    name="{{ aspects_logstash_options.daemon.NAME }}"
-    state="stopped"
+    name: "{{ aspects_logstash_options.daemon.NAME }}"
+    state: "stopped"
+  tags:
+  - aspects_logstash

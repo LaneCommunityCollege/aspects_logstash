@@ -1,49 +1,11 @@
 ---
-# tasks file for aspects_logstash
-- include: install.yml
-  when: aspects_logstash_install
+- include: tarball.yml
+  when: aspects_logstash_tarball and aspects_logstash_enabled
   tags:
-  - aspects_logstash
-  - aspects_logstash_install
-- include: installPackages.yml
-  tags:
+  - aspects_logstash_tarball
   - aspects_logstash
 
-- name: Set up logstash filesystem
-  when: aspects_logstash_enabled != false
-  file:
-    state="directory"
-    path="{{ item }}"
-    owner="{{ aspects_logstash_user.username }}"
-    group="{{ aspects_logstash_user.group }}"
-    mode="755"
-    recurse="no"
-  with_items:
-    - "{{ aspects_logstash_filesystem.logs }}"
-    - "{{ aspects_logstash_filesystem.conf }}"
-    - "{{ aspects_logstash_filesystem.patterns }}"
-    - "/opt/{{ aspects_logstash_bin_dirname }}"
+- include: Debian.yml
+  when: ansible_os_family == "Debian" and aspects_logstash_tarball == False and aspects_logstash_enabled
   tags:
-    - aspects_logstash
-
-- name: symlink /var/lib/logstash to /opt/{{ aspects_logstash_bin_dirname }}
-  when: aspects_logstash_enabled != false
-  file:
-    state="link"
-    src="/opt/{{ aspects_logstash_bin_dirname }}"
-    dest="/var/lib/logstash"
-    owner="{{ aspects_logstash_user.username }}"
-    group="{{ aspects_logstash_user.group }}"
-    mode="0755"
-  tags:
-    - aspects_logstash
-
-- include: logstash-daemon.yml
-  when: aspects_logstash_use_daemon
-  tags:
-    - aspects_logstash
-
-- include: configtemplates.yml
-  when: aspects_logstash_enabled != false
-  tags:
-    - aspects_logstash
+  - aspects_logstash

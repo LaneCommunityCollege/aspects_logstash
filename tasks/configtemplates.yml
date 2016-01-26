@@ -1,10 +1,19 @@
 ---
 # set input, output and filter configuration in logstash/conf.d
+- name: set defaults
+  template:
+    src="defaults.j2"
+    dest="/etc/default/{{ aspects_logstash_options.daemon.NAME }}"
+  notify:
+   - restart logstash
+  tags:
+    - aspects_logstash
+    - aspects_logstash_configtemplates
 
 - name: set patterns
   template:
     src="patterns.j2"
-    dest="{{ aspects_logstash_filesystem.patterns }}/patterns"
+    dest="/etc/logstash/patterns"
   notify:
    - restart logstash
   tags:

@@ -1,0 +1,15 @@
+---
+- include: runDebianInstall.yml
+  when: aspects_logstash_install and aspects_logstash_tarball == False
+  tags:
+  - aspects_logstash
+
+- include: configtemplates.yml
+  when: aspects_logstash_enabled
+  tags:
+    - aspects_logstash
+
+#- include: logstash-daemon.yml
+#  when: aspects_logstash_enabled
+#  tags:
+#    - aspects_logstash

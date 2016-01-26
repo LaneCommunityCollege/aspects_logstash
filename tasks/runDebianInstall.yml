@@ -1,0 +1,37 @@
+---
+- name: Debian - Install python-apt for use with ansible apt modules.
+  apt: 
+    pkg: python-apt
+    state: latest
+    update_cache: "yes"
+    cache_valid_time: "86400"
+  tags:
+    - aspects_logstash
+    - aspects_logstash_package_install
+
+- name: Debian - Add elastic.co repository key
+  apt_key:
+    url: "http://packages.elasticsearch.org/GPG-KEY-elasticsearch"
+    state: present
+  tags:
+    - aspects_logstash
+    - aspects_logstash_package_install
+
+- name: Debian - add Logstash repository
+  apt_repository:
+    repo: "deb http://packages.elastic.co/logstash/{{ aspects_logstash_major_version }}/debian stable main"
+    state: present
+  tags:
+    - aspects_logstash
+    - aspects_logstash_package_install
+
+- name: Debian - Install java 7 headless jre and logstash packages.
+  apt: 
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ aspects_logstash_packages.openjdk.Debian }}"
+    - logstash
+  tags:
+    - aspects_logstash
+    - aspects_logstash_package_install

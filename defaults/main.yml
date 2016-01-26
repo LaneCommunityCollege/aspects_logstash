@@ -13,9 +13,11 @@ aspects_logstash_user:
   username: root
   group: root
 
-aspects_logstash_install: false
-aspects_logstash_enabled: true
-aspects_logstash_use_daemon: true
+aspects_logstash_tarball: False
+aspects_logstash_major_version: 2.1
+aspects_logstash_install: False
+aspects_logstash_enabled: True
+aspects_logstash_use_daemon: True
 
 aspects_logstash_bin_filename: "logstash-1.5.2.tar.gz"
 aspects_logstash_bin_dirname: "logstash-1.5.2"
