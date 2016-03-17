@@ -1,17 +1,17 @@
 input {
-{% for input in aspects_logstash_rules.input %}
+{% for input in aspects_logstash_rules.input|sort %}
 {{ aspects_logstash_rules.input[input] }}
 {% endfor %}
 }
 
 output {
-{% for output in aspects_logstash_rules.output %}
+{% for output in aspects_logstash_rules.output|sort %}
 {{ aspects_logstash_rules.output[output] }}
 {% endfor %}
 }
 
 filter {
-{% for filter in aspects_logstash_rules.filter %}
+{% for filter in aspects_logstash_rules.filter|sort %}
 {{ aspects_logstash_rules.filter[filter] }}
 {% endfor %}
 }
