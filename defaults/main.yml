@@ -14,7 +14,7 @@ aspects_logstash_user:
   group: root
 
 aspects_logstash_tarball: False
-aspects_logstash_major_version: 2.2
+aspects_logstash_major_version: 2.3
 aspects_logstash_install: False
 aspects_logstash_enabled: True
 aspects_logstash_use_daemon: True
