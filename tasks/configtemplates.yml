@@ -11,6 +11,7 @@
     - aspects_logstash_configtemplates
 
 - name: set patterns
+  when: aspects_logstash_rules.patterns is defined
   template:
     src="patterns.j2"
     dest="/etc/logstash/patterns"
@@ -21,6 +22,7 @@
     - aspects_logstash_configtemplates
 
 - name: set inputs
+  when: aspects_logstash_rules.input is defined
   template:
     src="input.j2"
     dest="{{ aspects_logstash_filesystem.conf }}/input.conf"
@@ -31,6 +33,7 @@
     - aspects_logstash_configtemplates
 
 - name: set outputs
+  when: aspects_logstash_rules.output is defined
   template:
     src="output.j2"
     dest="{{ aspects_logstash_filesystem.conf }}/output.conf"
@@ -41,7 +44,7 @@
     - aspects_logstash_configtemplates
 
 - name: set filters
-  when: aspects_logstash_daemon_type == "indexer"
+  when: aspects_logstash_rules.filter is defined and aspects_logstash_daemon_type == "indexer"
   template:
     src="filter.j2"
     dest="{{ aspects_logstash_filesystem.conf }}/filter.conf"

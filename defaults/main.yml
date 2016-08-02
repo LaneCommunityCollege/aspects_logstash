@@ -55,12 +55,12 @@ aspects_logstash_options:
 
 ## Commented out configuration items are left as examples.
 aspects_logstash_rules:
-  patterns:
-    postfix: |
-      COMP ([\w._\/%-]+)
-      COMPID postfix\/%{COMP:component}(?:\[%{POSINT:pid}\])?
-      QUEUEID ([0-9A-F]{,11})
-      POSTFIX %{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:hostname} %{COMPID}: %{QUEUEID:queueid}
+# patterns:
+#   postfix: |
+#     COMP ([\w._\/%-]+)
+#     COMPID postfix\/%{COMP:component}(?:\[%{POSINT:pid}\])?
+#     QUEUEID ([0-9A-F]{,11})
+#     POSTFIX %{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:hostname} %{COMPID}: %{QUEUEID:queueid}
   input: {}
 #    stdin: |
 #      stdin{ type => "stdin" }
