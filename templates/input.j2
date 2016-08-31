@@ -1,4 +1,3 @@
-# {{ ansible_managed }}
 input {
   {% for value in aspects_logstash_rules.input|sort %}
   {{ aspects_logstash_rules.input[value] }}

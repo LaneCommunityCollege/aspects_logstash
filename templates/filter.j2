@@ -1,4 +1,3 @@
-# {{ ansible_managed }}
 filter {
   {% for value in aspects_logstash_rules.filter|sort %}
   {{ aspects_logstash_rules.filter[value] }}
