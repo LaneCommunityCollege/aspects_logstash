@@ -1,0 +1,13 @@
+---
+- include: tarball.yml
+  when: aspects_logstash_tarball and aspects_logstash_enabled
+  tags:
+  - aspects_logstash_tarball
+  - aspects_logstash
+
+- include: Debian.yml
+  when: ansible_os_family == "Debian" and
+        aspects_logstash_tarball == False and
+        aspects_logstash_enabled
+  tags:
+  - aspects_logstash

@@ -28,20 +28,6 @@ Default: root
 
 Defaults to root because of issues getting Logstash to read log files when using a different user. There are commented out sections in the role code that should help set up a logstash user. If you can make it work, please submit a pull request.
 
-###aspects_logstash_use_daemon
-Include the daemon tasks and handlers.
-Values: true|false
-Default: true
-
-###aspects_logstash_daemon_type
-Does this daemon send logs to data storage, or just to a queue/processor?
-Values: 
-"indexer" for data storage
-"shipper" for sending logs to a queue/processor.
-Default is "indexer"
-
-For example, if the daemon outputs to Elasticsearch, use "indexer". If the daemon outputs to Redis, use "shipper".
-
 ###aspects_logstash_bin_filename
 The filename of the logstash download. Used in the unarchive task.
 Values: Any file name that points to the tar file downloaded from logstash.
@@ -59,8 +45,8 @@ Dictionary that helps create and set permissions for the directories and files L
 The symlink to the unarchived logstash directory
 Values: where you want logstash to live
 Default: "/opt/logstash"
-You should not change this, it is embedded in several files. This should likely be removed eventually, or else the init scripts need to be templated. 
-####logs: 
+You should not change this, it is embedded in several files. This should likely be removed eventually, or else the init scripts need to be templated.
+####logs:
 The directory where the logstash log files live.
 Values: any directory.
 Default: "/var/log/logstash"
@@ -84,23 +70,22 @@ I'm not sure how well this works.
 
 Current default settings:
 
-      daemon:
-        enabled: "yes"
-        JAVACMD: false
-        NAME: "logstash"
-        DESC: "Logstash Daemon"
-        PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
-        LS_USER: "root"
-        LS_GROUP: "root"
-        LS_HOME: "/opt/logstash"
-        LS_HEAP_SIZE: "256m"
-        LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
-        LS_LOG_FILE: "/var/log/logstash/logstash.log"
-        LS_CONF_DIR: "/etc/logstash/conf.d"
-        LS_OPEN_FILES: "16384"
-        LS_NICE: "19"
-        LS_OPTS: ""
-        LS_PIDFILE: "/var/run/logstash.pid"
+    enabled: "yes"
+    JAVACMD: false
+    NAME: "logstash"
+    DESC: "Logstash Daemon"
+    PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
+    LS_USER: "root"
+    LS_GROUP: "root"
+    LS_HOME: "/opt/logstash"
+    LS_HEAP_SIZE: "256m"
+    LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
+    LS_LOG_FILE: "/var/log/logstash/logstash.log"
+    LS_CONF_DIR: "/etc/logstash/conf.d"
+    LS_OPEN_FILES: "16384"
+    LS_NICE: "19"
+    LS_OPTS: ""
+    LS_PIDFILE: "/var/run/logstash.pid"
 
 ###apspects_logstash_rules
 Dictionary containing logstash configuration.

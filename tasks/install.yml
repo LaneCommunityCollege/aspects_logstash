@@ -9,7 +9,7 @@
   tags:
     - aspects_logstash
     - aspects_logstash_install
-    - untar
+    - aspects_logstash_untar
 
 - name: Symlink logstash home.
   file:

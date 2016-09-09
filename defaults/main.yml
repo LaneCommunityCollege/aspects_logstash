@@ -14,44 +14,41 @@ aspects_logstash_user:
   group: root
 
 aspects_logstash_tarball: False
-aspects_logstash_major_version: 2.3
+aspects_logstash_major_version: 2.4
 aspects_logstash_install: False
-aspects_logstash_enabled: True
+aspects_logstash_enabled: False
 aspects_logstash_use_daemon: True
 
-aspects_logstash_bin_filename: "logstash-1.5.2.tar.gz"
-aspects_logstash_bin_dirname: "logstash-1.5.2"
-# can be "indexer" for daemon that stores logs in data storage like Elasticsearch, or
-# "shipper" for daemon that just sends logs to an indexer or to a queue like Redis.
-# default is "indexer"
-aspects_logstash_daemon_type: "indexer"
+# aspects_logstash_bin_filename: "logstash-1.5.2.tar.gz"
+# aspects_logstash_bin_dirname: "logstash-1.5.2"
+
 aspects_logstash_filesystem:
   binary: "/opt/logstash"
   logs: "/var/log/logstash"
   conf: "/etc/logstash/conf.d"
   patterns: "/etc/logstash/patterns"
+  templates: "/etc/logstash/templates"
   defaults:
     RedHat: "/etc/sysconfig"
     Debian: "/etc/default"
 
 aspects_logstash_options:
-  daemon:
-    enabled: "yes"
-    JAVACMD: false
-    NAME: "logstash"
-    DESC: "Logstash Daemon"
-    PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
-    LS_USER: "root"
-    LS_GROUP: "root"
-    LS_HOME: "/opt/logstash"
-    LS_HEAP_SIZE: "256m"
-    LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
-    LS_LOG_FILE: "/var/log/logstash/logstash.log"
-    LS_CONF_DIR: "/etc/logstash/conf.d"
-    LS_OPEN_FILES: "16384"
-    LS_NICE: "19"
-    LS_OPTS: ""
-    LS_PIDFILE: "/var/run/logstash.pid"
+  enabled: "yes"
+  JAVACMD: false
+  NAME: "logstash"
+  DESC: "Logstash Daemon"
+  PATH: "/bin:/usr/bin:/sbin:/usr/sbin"
+  LS_USER: "root"
+  LS_GROUP: "root"
+  LS_HOME: "/opt/logstash"
+  LS_HEAP_SIZE: "256m"
+  LS_JAVA_OPTS: "-Djava.io.tmpdir=${LS_HOME}"
+  LS_LOG_FILE: "/var/log/logstash/logstash.log"
+  LS_CONF_DIR: "/etc/logstash/conf.d"
+  LS_OPEN_FILES: "16384"
+  LS_NICE: "19"
+  LS_OPTS: ""
+  LS_PIDFILE: "/var/run/logstash.pid"
 
 ## Commented out configuration items are left as examples.
 aspects_logstash_rules:

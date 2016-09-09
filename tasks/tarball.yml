@@ -5,6 +5,7 @@
   tags:
   - aspects_logstash
   - aspects_logstash_install
+
 - include: installPackages.yml
   tags:
   - aspects_logstash
@@ -22,6 +23,7 @@
     - "{{ aspects_logstash_filesystem.logs }}"
     - "{{ aspects_logstash_filesystem.conf }}"
     - "{{ aspects_logstash_filesystem.patterns }}"
+    - "{{ aspects_logstash_filesystem.templates }}"
     - "/opt/{{ aspects_logstash_bin_dirname }}"
   tags:
     - aspects_logstash
